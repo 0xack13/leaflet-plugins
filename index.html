@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <link rel="stylesheet" href="zoomcontrol.css" />
+	<link rel="stylesheet" href="L.Control.ZoomMin.css" media="screen">
+	<link rel="stylesheet" href="leaflet.label.css" />
+	<script src="L.Control.ZoomMin.js"></script>
+	<script src="Label.js"></script>
+	<script src="BaseMarkerMethods.js">></script>
+	<script src="Marker.Label.js"></script>
+	<script src="Map.Label.js"></script>
+	
+</head>
+<body>
+	<div id="map"></div>
+	<script>
+		var mapquest = new L.TileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
+			attribution: "©<a href='http://openstreetmap.org/' target='_blank'>OpenStreetMap</a> contributors, Tiles Courtesy of <a href='http://open.mapquest.com' target='_blank'>MapQuest</a>", 
+			subdomains: ['1','2','3','4']
+		});
+
+		map = new L.Map('map', {
+				layers: [mapquest],
+				center: new L.LatLng(-37.785, 175.263), 
+				zoom: 13,
+				minZoom: 3,
+				maxZoom: 13,
+				zoomControl: false,
+			});
+
+		map.addControl(new L.Control.ZoomMin())
+		L.marker([-37.785, 175.263])
+		    .bindLabel('A sweet static label!', { noHide: false })
+		    .addTo(map);
+</script>
+</body>
+</html>
